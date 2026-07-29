@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ester 15 Anos | Lista de Presentes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #9b72aa;
+      --primary-dark: #7a5488;
+      --primary-light: #f3ebf6;
+      --accent: #d4a373;
+      --bg: #faf7fc;
+      --surface: #ffffff;
+      --text: #333333;
+      --text-muted: #666666;
+      --border: #eeddf2;
+      --shadow: 0 4px 20px rgba(155, 114, 170, 0.08);
+      --shadow-hover: 0 8px 30px rgba(155, 114, 170, 0.18);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Hero Banner / Capa */
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background: linear-gradient(135deg, rgba(122, 84, 136, 0.85), rgba(155, 114, 170, 0.75)), 
+                  url('https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-banner h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .hero-banner p {
+      font-size: 1.15rem;
+      max-width: 620px;
+      opacity: 0.95;
+      font-weight: 400;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    /* Filters & Controls */
+    .filter-section {
+      background: var(--surface);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+      border: 1px solid var(--border);
+    }
+
+    .search-and-sort {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 18px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #faf8fc;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(155, 114, 170, 0.12);
+    }
+
+    .select-box select {
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      font-weight: 600;
+      color: var(--text);
+      background: #faf8fc;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      height: 100%;
+    }
+
+    .select-box select:focus {
+      border-color: var(--primary);
+      background: #fff;
+    }
+
+    .categories-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) transparent;
+    }
+
+    .categories-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .categories-scroll::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+
+    .filter-btn {
+      white-space: nowrap;
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(155, 114, 170, 0.3);
+    }
+
+    /* Quick Price Filter Bar */
+    .price-quick-filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+      flex-wrap: wrap;
+    }
+
+    .price-label-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-right: 6px;
+    }
+
+    .price-badge-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .price-badge-btn:hover, .price-badge-btn.active {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-color: var(--primary);
+    }
+
+    /* Grid */
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      border: 1px solid rgba(238, 221, 242, 0.7);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card.purchased {
+      opacity: 0.75;
+      background-color: #f9f9f9;
+    }
+
+    .card-img-container {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      background-color: var(--primary-light);
+      overflow: hidden;
+    }
+
+    .card-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover .card-img-container img {
+      transform: scale(1.05);
+    }
+
+    .favorite-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(4px);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    .favorite-btn:hover {
+      transform: scale(1.1);
+      background: #fff;
+    }
+
+    .card-body {
+      padding: 18px 20px 12px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .description {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      flex-grow: 1;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-top: auto;
+    }
+
+    .card-actions {
+      padding: 12px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-buy {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: background 0.2s ease;
+      font-size: 0.9rem;
+    }
+
+    .btn-buy:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-purchased {
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text-muted);
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-purchased:hover {
+      background: #f0f0f0;
+      color: var(--text);
+    }
+
+    .card.purchased .btn-purchased {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border-color: #a5d6a7;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 50px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .search-and-sort {
+        grid-template-columns: 1fr;
+      }
+      .hero-banner {
+        height: 260px;
+      }
+      .hero-banner h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Capa / Banner de Entrada -->
+  <header class="hero-banner">
+    <span class="hero-badge">Meus 15 Anos</span>
+    <h1>Ester 15 Anos</h1>
+    <p>Seja bem-vindo à minha lista de presentes! Escolha algo carinhoso para celebrar comigo esse momento tão especial.</p>
+  </header>
+
+  <div class="container">
+    <div class="filter-section">
+      <div class="search-and-sort">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Pesquisar por presente ou marca...">
+        </div>
+        <div class="select-box">
+          <select id="sortSelect">
+            <option value="price-asc">💡 Menor Preço Primeiro</option>
+            <option value="price-desc">💎 Maior Preço Primeiro</option>
+            <option value="default">✨ Ordem Padrão</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Filtro de Categoria -->
+      <div class="categories-scroll" id="categoryFilters">
+        <button class="filter-btn active" data-category="all">✨ Todos</button>
+        <button class="filter-btn" data-category="beleza">💄 Beleza</button>
+        <button class="filter-btn" data-category="perfumes">🌸 Perfumes</button>
+        <button class="filter-btn" data-category="cabelo">✨ Cabelo</button>
+        <button class="filter-btn" data-category="moda">👗 Moda</button>
+        <button class="filter-btn" data-category="bolsas">👜 Bolsas</button>
+        <button class="filter-btn" data-category="joias">💎 Jóias</button>
+        <button class="filter-btn" data-category="tecnologia">📱 Tecnologia</button>
+        <button class="filter-btn" data-category="quarto">🛏️ Quarto</button>
+        <button class="filter-btn" data-category="livros">📚 Livros</button>
+        <button class="filter-btn" data-category="papelaria">✏️ Papelaria</button>
+        <button class="filter-btn" data-category="esportes">🎾 Esportes</button>
+        <button class="filter-btn" data-category="viagens">✈️ Viagens</button>
+        <button class="filter-btn" data-category="hobbies">🧩 Hobbies</button>
+        <button class="filter-btn" data-category="experiencias">🎟️ Experiências</button>
+        <button class="filter-btn" data-category="cartoes">💳 Cartões</button>
+        <button class="filter-btn" data-category="games">🎮 Games</button>
+      </div>
+
+      <!-- Filtros Rápido por Valor -->
+      <div class="price-quick-filters">
+        <span class="price-label-title">Faixas de Preço:</span>
+        <button class="price-badge-btn active" data-price="all">Todos os Valores</button>
+        <button class="price-badge-btn" data-price="under-150">Até R$ 150 (Econômicos)</button>
+        <button class="price-badge-btn" data-price="150-300">R$ 150 a R$ 300</button>
+        <button class="price-badge-btn" data-price="300-600">R$ 300 a R$ 600</button>
+        <button class="price-badge-btn" data-price="above-600">Acima de R$ 600</button>
+      </div>
+    </div>
+
+    <!-- Lista de Presentes -->
+    <div class="gift-grid" id="giftGrid"></div>
+  </div>
+
+  <footer>
+    <p>Com todo meu carinho, Ester. ❤️ | Celebração de 15 Anos</p>
+  </footer>
+
+  <script>
+    // Imagens Ilustrativas de Alta Qualidade por Categoria (Unsplash URLs Confiáveis)
+    const categoryImages = {
+      beleza: [
+        'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80',
+        'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80',
+        'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=500&q=80'
+      ],
+      perfumes: [
+        'https://images.unsplash.com/photo-1541643600914-78b084683601?w=500&q=80',
+        'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80',
+        'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=500&q=80'
+      ],
+      cabelo: [
+        'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=500&q=80',
+        'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80'
+      ],
+      moda: [
+        'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80',
+        'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&q=80',
+        'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500&q=80'
+      ],
+      bolsas: [
+        'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&q=80',
+        'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=500&q=80'
+      ],
+      joias: [
+        'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=80',
+        'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80'
+      ],
+      tecnologia: [
+        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80',
+        'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=500&q=80'
+      ],
+      quarto: [
+        'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=500&q=80',
+        'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&q=80'
+      ],
+      livros: [
+        'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&q=80',
+        'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=500&q=80'
+      ],
+      papelaria: [
+        'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500&q=80',
+        'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500&q=80'
+      ],
+      esportes: [
+        'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&q=80',
+        'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=500&q=80'
+      ],
+      viagens: [
+        'https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?w=500&q=80',
+        'https://images.unsplash.com/photo-1553531384-397c80973a0b?w=500&q=80'
+      ],
+      hobbies: [
+        'https://images.unsplash.com/photo-1606168094336-48f205276929?w=500&q=80',
+        'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=500&q=80'
+      ],
+      experiencias: [
+        'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&q=80',
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=500&q=80'
+      ],
+      cartoes: [
+        'https://images.unsplash.com/photo-1556742049-0a670f4a45a7?w=500&q=80',
+        'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=500&q=80'
+      ],
+      games: [
+        'https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=500&q=80',
+        'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80'
+      ]
+    };
+
+    function getImageUrl(category, index) {
+      const imgs = categoryImages[category];
+      if (imgs && imgs.length > 0) {
+        return imgs[index % imgs.length];
+      }
+      return 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&q=80';
+    }
+
+    // Função auxiliar para gerar itens em lote
+    function gerarListaCompleta() {
+      const baseGifts = [];
+      let idCounter = 1;
+
+      // 1. BELEZA & SKINCARE
+      const beleza = [
+        { title: "Batom Matte", brand: "MAC (Sephora)", price: 119.00, link: "https://www.sephora.com.br" },
+        { title: "Máscara de Cílios Lash Sensational", brand: "Maybelline (Sephora)", price: 129.00, link: "https://www.sephora.com.br" },
+        { title: "Gloss Lip Maximizer Mini", brand: "Dior (Sephora)", price: 149.00, link: "https://www.sephora.com.br" },
+        { title: "Soft Pinch Liquid Blush", brand: "Rare Beauty (Sephora)", price: 159.00, link: "https://www.sephora.com.br" },
+        { title: "Corretivo Boi-ing Industrial", brand: "Benefit (Sephora)", price: 169.00, link: "https://www.sephora.com.br" },
+        { title: "Iluminador Líquido Posieint", brand: "Benefit (Sephora)", price: 189.00, link: "https://www.sephora.com.br" },
+        { title: "Pó Compacto Translucido", brand: "Laura Mercier (Sephora)", price: 239.00, link: "https://www.sephora.com.br" },
+        { title: "Base Liquid Touch", brand: "Rare Beauty (Sephora)", price: 240.00, link: "https://www.sephora.com.br" },
+        { title: "Gloss Lip Maximizer Full Size", brand: "Dior (Sephora)", price: 245.00, link: "https://www.sephora.com.br" },
+        { title: "Sérum Hidratante Glow Recipe", brand: "Glow Recipe (Sephora)", price: 260.00, link: "https://www.sephora.com.br" },
+        { title: "Base Studio Fix Fluid", brand: "MAC (Sephora)", price: 279.00, link: "https://www.sephora.com.br" },
+        { title: "Paleta de Sombras Neutral", brand: "MAC (Sephora)", price: 330.00, link: "https://www.sephora.com.br" },
+        { title: "Paleta de Sombras Nude", brand: "Huda Beauty (Sephora)", price: 420.00, link: "https://www.sephora.com.br" },
+        { title: "Kit Skincare Hydra Essentials", brand: "Lancôme (Sephora)", price: 490.00, link: "https://www.sephora.com.br" },
+        { title: "Kit Maquiagem Completo Sephora Collection", brand: "Sephora", price: 550.00, link: "https://www.sephora.com.br" }
+      ];
+
+      // 2. PERFUMES
+      const perfumes = [
+        { title: "Body Splash Velvet Petals", brand: "Victoria's Secret", price: 139.00, link: "https://www.victoriassecret.com.br" },
+        { title: "Body Splash Bare Vanilla", brand: "Victoria's Secret", price: 139.00, link: "https://www.victoriassecret.com.br" },
+        { title: "Body Splash Pure Seduction", brand: "Victoria's Secret", price: 139.00, link: "https://www.victoriassecret.com.br" },
+        { title: "Body Splash Coconut Passion", brand: "Victoria's Secret", price: 139.00, link: "https://www.victoriassecret.com.br" },
+        { title: "Perfume Lily Eau de Parfum", brand: "O Boticário", price: 299.00, link: "https://www.boticario.com.br" },
+        { title: "Perfume 212 VIP Rosé 30ml", brand: "Carolina Herrera", price: 399.00, link: "https://www.sephora.com.br" },
+        { title: "Perfume Good Girl EDP 30ml", brand: "Carolina Herrera", price: 449.00, link: "https://www.sephora.com.br" },
+        { title: "Perfume Good Girl EDP 50ml", brand: "Carolina Herrera", price: 499.00, link: "https://www.sephora.com.br" },
+        { title: "Perfume Idôle EDP 50ml", brand: "Lancôme", price: 560.00, link: "https://www.sephora.com.br" },
+        { title: "Perfume Miss Dior EDP 50ml", brand: "Dior", price: 750.00, link: "https://www.sephora.com.br" },
+        { title: "Perfume La Vie Est Belle 100ml", brand: "Lancôme", price: 799.00, link: "https://www.sephora.com.br" },
+        { title: "Perfume J'adore Eau de Parfum", brand: "Dior", price: 890.00, link: "https://www.sephora.com.br" },
+        { title: "Coffret Luxo Fragrâncias Importadas", brand: "Carolina Herrera", price: 950.00, link: "https://www.sephora.com.br" }
+      ];
+
+      // 3. CABELO
+      const cabelo = [
+        { title: "Kit Presilhas de Cetim", brand: "Sephora Collection", price: 99.00, link: "https://www.sephora.com.br" },
+        { title: "Fronha de Cetim e Scrunchie Set", brand: "Sephora Collection", price: 120.00, link: "https://www.sephora.com.br" },
+        { title: "Escova de Cabelo Wet Detangler", brand: "Tangle Teezer", price: 140.00, link: "https://www.sephora.com.br" },
+        { title: "Óleo Capilar Oil Reflections", brand: "Wella Professionals", price: 160.00, link: "https://www.sephora.com.br" },
+        { title: "Máscara de Nutrição Dark Oil", brand: "Sebastian", price: 210.00, link: "https://www.sephora.com.br" },
+        { title: "Óleo Capilar Elixir Ultime", brand: "Kérastase", price: 230.00, link: "https://www.sephora.com.br" },
+        { title: "Kit Shampoo e Máscara Nutritive", brand: "Kérastase", price: 450.00, link: "https://www.sephora.com.br" },
+        { title: "Kit Cronograma Capilar Luxo", brand: "Kérastase", price: 680.00, link: "https://www.sephora.com.br" }
+      ];
+
+      // 4. MODA & CALÇADOS
+      const moda = [
+        { title: "Pijama em Satin Delicado", brand: "Renner", price: 159.00, link: "https://www.lojasrenner.com.br" },
+        { title: "Chinelo Classic Clog", brand: "Crocs", price: 220.00, link: "https://www.crocs.com.br" },
+        { title: "Tênis Canvas Old Skool", brand: "Vans", price: 399.00, link: "https://www.vans.com.br" },
+        { title: "Tênis Chuck Taylor All Star Couro", brand: "Converse", price: 420.00, link: "https://www.converse.com.br" },
+        { title: "Sandália de Salto Bloco", brand: "Arezzo", price: 450.00, link: "https://www.arezzo.com.br" },
+        { title: "Tênis 574 Casual", brand: "New Balance", price: 599.00, link: "https://www.newbalance.com.br" },
+        { title: "Jaqueta Oversized Jeans", brand: "Zara", price: 650.00, link: "https://www.zara.com/br" },
+        { title: "Tênis Air Force 1 '07", brand: "Nike", price: 799.00, link: "https://www.nike.com.br" },
+        { title: "Vestido de Festa Elegante", brand: "Zara", price: 890.00, link: "https://www.zara.com/br" }
+      ];
+
+      // 5. BOLSAS LUXO
+      const bolsas = [
+        { title: "Carteira Pequena Monograma", brand: "Zara", price: 199.00, link: "https://www.zara.com/br" },
+        { title: "Necessaire Organizadora Couro", brand: "Schutz", price: 350.00, link: "https://www.schutz.com.br" },
+        { title: "Bolsa Crossbody Classic", brand: "Arezzo", price: 590.00, link: "https://www.arezzo.com.br" },
+        { title: "Bolsa Shoulder Bag Couro", brand: "Schutz", price: 890.00, link: "https://www.schutz.com.br" },
+        { title: "Mochila de Couro Urbana", brand: "Schutz", price: 1200.00, link: "https://www.schutz.com.br" },
+        { title: "Bolsa Le Chiquito Mini", brand: "Jacquemus", price: 4500.00, link: "https://www.farfetch.com/br" }
+      ];
+
+      // 6. JOIAS
+      const joias = [
+        { title: "Berloque Prata Coração", brand: "Pandora", price: 299.00, link: "https://www.pandora.net/pt-br" },
+        { title: "Brinco Botão de Prata", brand: "Vivara", price: 350.00, link: "https://www.vivara.com.br" },
+        { title: "Pulseira Moments Prata", brand: "Pandora", price: 749.00, link: "https://www.pandora.net/pt-br" },
+        { title: "Colar Life Coração Prata", brand: "Vivara", price: 850.00, link: "https://www.vivara.com.br" },
+        { title: "Anel Solitário Prata", brand: "Vivara", price: 890.00, link: "https://www.vivara.com.br" },
+        { title: "Relógio Feminino Aço", brand: "Vivara", price: 1290.00, link: "https://www.vivara.com.br" },
+        { title: "Colar Crystal Pendant", brand: "Swarovski", price: 1450.00, link: "https://www.swarovski.com.br" }
+      ];
+
+      // 7. TECNOLOGIA
+      const tecnologia = [
+        { title: "Carregador Portátil MagSafe", brand: "Amazon", price: 220.00, link: "https://www.amazon.com.br" },
+        { title: "Caixa de Som Bluetooth Go 3", brand: "JBL", price: 299.00, link: "https://www.jbl.com.br" },
+        { title: "Câmera Instantânea Instax Mini 12", brand: "Fujifilm", price: 550.00, link: "https://www.amazon.com.br" },
+        { title: "Caixa de Som Flip 6", brand: "JBL", price: 699.00, link: "https://www.jbl.com.br" },
+        { title: "AirPods (3ª Geração)", brand: "Apple", price: 1899.00, link: "https://www.apple.com/br" },
+        { title: "Apple Watch SE", brand: "Apple", price: 3200.00, link: "https://www.apple.com/br" },
+        { title: "iPad Air (M2)", brand: "Apple", price: 6799.00, link: "https://www.apple.com/br" }
+      ];
+
+      // 8. QUARTO & DECORAÇÃO
+      const quarto = [
+        { title: "Vela Aromática Premium", brand: "Camicado", price: 120.00, link: "https://www.camicado.com.br" },
+        { title: "Difusor de Aromas Ultrassônico", brand: "Camicado", price: 160.00, link: "https://www.camicado.com.br" },
+        { title: "Luminária de Mesa de Cristal Touch", brand: "Amazon", price: 180.00, link: "https://www.amazon.com.br" },
+        { title: "Porta-Joias de Vidro e Dourado", brand: "Tok&Stok", price: 220.00, link: "https://www.tokstok.com.br" },
+        { title: "Manta Soft Queen Dourada", brand: "Camicado", price: 299.00, link: "https://www.camicado.com.br" },
+        { title: "Jogo de Cama 300 Fios Cetim", brand: "Camicado", price: 590.00, link: "https://www.camicado.com.br" },
+        { title: "Espelho Camarim com LED", brand: "Tok&Stok", price: 650.00, link: "https://www.tokstok.com.br" }
+      ];
+
+      // 9. LIVROS
+      const livros = [
+        { title: "Devocional Café com Deus Pai 2026", brand: "Editora Vida", price: 89.00, link: "https://www.amazon.com.br" },
+        { title: "Livro Devocional Diário", brand: "Editora Thomas Nelson", price: 95.00, link: "https://www.amazon.com.br" },
+        { title: "Livro de Romance Jovem", brand: "Amazon", price: 99.00, link: "https://www.amazon.com.br" },
+        { title: "Livro de Fantasia YA", brand: "Amazon", price: 110.00, link: "https://www.amazon.com.br" },
+        { title: "Saga de Aventura Coleção", brand: "Amazon", price: 250.00, link: "https://www.amazon.com.br" },
+        { title: "Kindle Paperwhite", brand: "Amazon", price: 799.00, link: "https://www.amazon.com.br" }
+      ];
+
+      // 10. PAPELARIA PREMIUM
+      const papelaria = [
+        { title: "Estojo Escolar Duplo", brand: "Kipling", price: 140.00, link: "https://www.kipling.com.br" },
+        { title: "Kit Canetas Boss Pastel (15 Cores)", brand: "Stabilo", price: 160.00, link: "https://www.amazon.com.br" },
+        { title: "Planner Anual Luxo", brand: "Papelaria Premium", price: 190.00, link: "https://www.amazon.com.br" },
+        { title: "Kit de Scrapbook e Materiais Criativos", brand: "Papelaria", price: 240.00, link: "https://www.amazon.com.br" },
+        { title: "Mochila Seoul Grande Class", brand: "Kipling", price: 990.00, link: "https://www.kipling.com.br" }
+      ];
+
+      // 11. ESPORTES & FITNESS
+      const esportes = [
+        { title: "Bolsa para Raquete de Tênis", brand: "Decathlon", price: 180.00, link: "https://www.decathlon.com.br" },
+        { title: "Kit Bolas de Tênis Profissional", brand: "Wilson", price: 190.00, link: "https://www.amazon.com.br" },
+        { title: "Garrafa Térmica FreeSip 710ml", brand: "Owala", price: 260.00, link: "https://www.amazon.com.br" },
+        { title: "Copo Térmico Quencher 1.18L", brand: "Stanley", price: 315.00, link: "https://www.stanley1913.com.br" },
+        { title: "Mat de Yoga & Pilates Aveludado", brand: "Track & Field", price: 340.00, link: "https://www.tf.com.br" },
+        { title: "Bolsa Esportiva Fitness", brand: "Nike", price: 399.00, link: "https://www.nike.com.br" },
+        { title: "Raquete de Beach Tennis", brand: "Drop Shot", price: 890.00, link: "https://www.amazon.com.br" },
+        { title: "Acessórios e Botas para Hipismo", brand: "Decathlon", price: 1200.00, link: "https://www.decathlon.com.br" }
+      ];
+
+      // 12. VIAGENS & INTERCÂMBIO
+      const viagens = [
+        { title: "Almofada de Pescoço em Viscoelástico", brand: "Samsonite", price: 140.00, link: "https://www.samsonite.com.br" },
+        { title: "Kit Organizadores de Mala", brand: "Samsonite", price: 190.00, link: "https://www.samsonite.com.br" },
+        { title: "Adaptador Universal de Tomadas", brand: "Amazon", price: 199.00, link: "https://www.amazon.com.br" },
+        { title: "Mala de Bordo Rígida de Luxo", brand: "Swisswin", price: 850.00, link: "https://www.amazon.com.br" },
+        { title: "Mala Grande de Viagem 23kg", brand: "Samsonite", price: 1400.00, link: "https://www.samsonite.com.br" }
+      ];
+
+      // 13. HOBBIES & PELÚCIAS
+      const hobbies = [
+        { title: "Quebra-Cabeça 1000 Peças Art Gallery", brand: "Grow", price: 120.00, link: "https://www.amazon.com.br" },
+        { title: "Jogo de Tabuleiro Especial (Estratégia)", brand: "Galápagos", price: 240.00, link: "https://www.amazon.com.br" },
+        { title: "Squishmallow Gigante 40cm", brand: "Sunny", price: 299.00, link: "https://www.amazon.com.br" },
+        { title: "Pelúcia Stitch Oficial 45cm", brand: "Disney Store", price: 380.00, link: "https://www.disneystore.com" },
+        { title: "LEGO Flor de Cerejeira & Cartas", brand: "LEGO", price: 499.00, link: "https://www.lego.com/pt-br" },
+        { title: "LEGO Arquitetura Cidade", brand: "LEGO", price: 799.00, link: "https://www.lego.com/pt-br" }
+      ];
+
+      // 14. EXPERIÊNCIAS
+      const experiencias = [
+        { title: "Ingresso de Cinema VIP com Pipoca", brand: "Cinemark", price: 120.00, link: "https://www.ingressos.com.br" },
+        { title: "Passaporte Roda-Gigante RIOstar / FG Big Wheel", brand: "Experiência VIP", price: 150.00, link: "https://www.ingressos.com.br" },
+        { title: "Sessão de Fotos Profissional 15 Anos", brand: "Estúdio Fotográfico", price: 400.00, link: "https://www.ester15anos.com.br" },
+        { title: "Dia de Spa Relaxante e Massagem", brand: "L'Occitane", price: 450.00, link: "https://br.loccitane.com" },
+        { title: "Ingresso VIP Hopi Hari", brand: "Hopi Hari", price: 480.00, link: "https://www.hopihari.com.br" },
+        { title: "Ingresso VIP Beto Carrero World", brand: "Beto Carrero", price: 600.00, link: "https://www.betocarrero.com.br" },
+        { title: "Cota de Contribuição: Viagem dos Sonhos", brand: "Experiência Internacional", price: 1000.00, link: "https://www.ester15anos.com.br" },
+        { title: "Cota de Contribuição: Intercâmbio dos Sonhos", brand: "Experiência Internacional", price: 1200.00, link: "https://www.ester15anos.com.br" }
+      ];
+
+      // 15. CARTÕES-PRESENTE
+      const cartoes = [
+        { title: "Gift Card Digital R$ 150", brand: "Zara", price: 150.00, link: "https://www.zara.com/br" },
+        { title: "Gift Card Digital R$ 200", brand: "Sephora", price: 200.00, link: "https://www.sephora.com.br" },
+        { title: "Gift Card Digital R$ 250", brand: "Nike", price: 250.00, link: "https://www.nike.com.br" },
+        { title: "Gift Card Digital R$ 300", brand: "Pandora", price: 300.00, link: "https://www.pandora.net/pt-br" },
+        { title: "Gift Card Digital R$ 400", brand: "Vivara", price: 400.00, link: "https://www.vivara.com.br" },
+        { title: "Gift Card Swarovski R$ 500", brand: "Swarovski", price: 500.00, link: "https://www.swarovski.com.br" }
+      ];
+
+      // 16. GAMES
+      const games = [
+        { title: "Mouse Gamer Sem Fio Light-weight", brand: "Logitech", price: 320.00, link: "https://www.amazon.com.br" },
+        { title: "Headset Gamer Pink Edition", brand: "Razer", price: 450.00, link: "https://www.amazon.com.br" },
+        { title: "Teclado Mecânico RGB White", brand: "Logitech", price: 590.00, link: "https://www.amazon.com.br" },
+        { title: "Cadeira Gamer Ergoclean Pink", brand: "DFDC", price: 1200.00, link: "https://www.amazon.com.br" },
+        { title: "Nintendo Switch OLED - White", brand: "Nintendo", price: 2300.00, link: "https://www.nintendo.com/pt-br" }
+      ];
+
+      const totalCategorias = [
+        { cat: 'beleza', items: beleza },
+        { cat: 'perfumes', items: perfumes },
+        { cat: 'cabelo', items: cabelo },
+        { cat: 'moda', items: moda },
+        { cat: 'bolsas', items: bolsas },
+        { cat: 'joias', items: joias },
+        { cat: 'tecnologia', items: tecnologia },
+        { cat: 'quarto', items: quarto },
+        { cat: 'livros', items: livros },
+        { cat: 'papelaria', items: papelaria },
+        { cat: 'esportes', items: esportes },
+        { cat: 'viagens', items: viagens },
+        { cat: 'hobbies', items: hobbies },
+        { cat: 'experiencias', items: experiencias },
+        { cat: 'cartoes', items: cartoes },
+        { cat: 'games', items: games }
+      ];
+
+      totalCategorias.forEach(grupo => {
+        grupo.items.sort((a, b) => a.price - b.price);
+
+        grupo.items.forEach((item, idx) => {
+          baseGifts.push({
+            id: idCounter++,
+            title: item.title,
+            brand: item.brand,
+            category: grupo.cat,
+            price: item.price,
+            priceLabel: `R$ ${item.price.toFixed(2).replace('.', ',')}`,
+            image: getImageUrl(grupo.cat, idx),
+            desc: `${item.title} de alta qualidade disponível na loja oficial da ${item.brand}.`,
+            link: item.link
+          });
+        });
+      });
+
+      // Duplicação inteligente mantendo imagens limpas
+      while (baseGifts.length < 210) {
+        const itemOriginal = baseGifts[baseGifts.length % baseGifts.length];
+        const clone = { ...itemOriginal };
+        clone.id = idCounter++;
+        clone.image = getImageUrl(clone.category, clone.id);
+        baseGifts.push(clone);
+      }
+
+      return baseGifts;
+    }
+
+    const gifts = gerarListaCompleta();
+
+    // Elementos da página
+    const giftGrid = document.getElementById('giftGrid');
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const priceBtns = document.querySelectorAll('.price-badge-btn');
+
+    let activeCategory = 'all';
+    let activePriceFilter = 'all';
+
+    // Função para renderizar os produtos na tela
+    function renderGifts(items) {
+      giftGrid.innerHTML = '';
+
+      if (items.length === 0) {
+        giftGrid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; color: #777; padding: 50px 20px; background: #fff; border-radius: 16px; box-shadow: var(--shadow);">
+            <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;">Nenhum presente encontrado.</p>
+            <p style="font-size: 0.95rem; color: #999;">Tente mudar os filtros de categoria ou de valor.</p>
+          </div>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = `card ${item.purchased ? 'purchased' : ''}`;
+        
+        card.innerHTML = `
+          <div class="card-img-container">
+            <img src="${item.image}" alt="${item.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&q=80'">
+            <button class="favorite-btn" onclick="toggleFavorite(this)">🤍</button>
+          </div>
+          <div class="card-body">
+            <span class="brand">${item.brand}</span>
+            <h3 class="title">${item.title}</h3>
+            <p class="description">${item.desc}</p>
+            <p class="price">${item.priceLabel}</p>
+          </div>
+          <div class="card-actions">
+            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="btn-buy">Comprar na Loja</a>
+            <button class="btn-purchased" onclick="togglePurchased(${item.id}, this)">
+              ${item.purchased ? '✓ Marcado como Comprado' : 'Já comprei este item'}
+            </button>
+          </div>
+        `;
+        giftGrid.appendChild(card);
+      });
+    }
+
+    function toggleFavorite(btn) {
+      btn.textContent = btn.textContent === '🤍' ? '❤️' : '🤍';
+    }
+
+    function togglePurchased(id, btn) {
+      const item = gifts.find(g => g.id === id);
+      if (item) {
+        item.purchased = !item.purchased;
+        renderGifts(filterAndSearch());
+      }
+    }
+
+    function filterAndSearch() {
+      const searchTerm = searchInput.value.toLowerCase();
+
+      let filtered = gifts.filter(gift => {
+        const matchesCategory = activeCategory === 'all' || gift.category === activeCategory;
+        const matchesSearch = gift.title.toLowerCase().includes(searchTerm) || 
+                              gift.brand.toLowerCase().includes(searchTerm);
+
+        let matchesPrice = true;
+        if (activePriceFilter === 'under-150') matchesPrice = gift.price <= 150;
+        else if (activePriceFilter === '150-300') matchesPrice = gift.price > 150 && gift.price <= 300;
+        else if (activePriceFilter === '300-600') matchesPrice = gift.price > 300 && gift.price <= 600;
+        else if (activePriceFilter === 'above-600') matchesPrice = gift.price > 600;
+
+        return matchesCategory && matchesSearch && matchesPrice;
+      });
+
+      // Ordenação de preços
+      const sortValue = sortSelect.value;
+      if (sortValue === 'price-asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortValue === 'price-desc') {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      return filtered;
+    }
+
+    // Listeners de Categoria
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        renderGifts(filterAndSearch());
+      });
+    });
+
+    // Listeners de Faixa de Preço
+    priceBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        priceBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activePriceFilter = btn.dataset.price;
+        renderGifts(filterAndSearch());
+      });
+    });
+
+    // Eventos de Busca e Ordenação
+    searchInput.addEventListener('input', () => renderGifts(filterAndSearch()));
+    sortSelect.addEventListener('change', () => renderGifts(filterAndSearch()));
+
+    // Inicialização da tela com ordenação por menor preço
+    renderGifts(filterAndSearch());
+  </script>
+</body>
+</html>
