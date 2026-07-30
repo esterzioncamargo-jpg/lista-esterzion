@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Presentes • Ester 15 Anos</title>
+  
+  <!-- 1. Tailwind CDN FIRST (Fixes ReferenceError: tailwind is not defined) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 2. Font Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- 3. Tailwind Configuration AFTER Tailwind CDN -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            lavanda: {
+              50: '#FAF5FC',
+              100: '#F3E8FA',
+              200: '#E5D0F5',
+              300: '#D2B3EA',
+              500: '#AA74C9',
+              700: '#7E439E',
+              900: '#431E56',
+            },
+            tiffany: {
+              50: '#F2FAF9',
+              100: '#E4F5F3',
+              200: '#C2ECE7',
+              300: '#94DDD5',
+              500: '#4DBFB3',
+              700: '#2A8C82',
+              900: '#154A45',
+            },
+            dourado: {
+              50: '#FCFAF2',
+              100: '#FAF4E1',
+              200: '#F4E5B8',
+              300: '#E8D288',
+              500: '#D4B04C',
+              700: '#A38128',
+              900: '#614B10',
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            sans: ['Montserrat', 'sans-serif'],
+            script: ['Great Vibes', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #FCFAFD;
+      color: #332B38;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F3E8FA;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #AA74C9;
+      border-radius: 999px;
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, #F3E8FA 0%, #E4F5F3 50%, #FAF4E1 100%);
+      box-shadow: 0 4px 20px rgba(170, 116, 201, 0.08);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 176, 76, 0.25);
+      box-shadow: 0 10px 30px rgba(126, 67, 158, 0.05);
+    }
+
+    .gift-card {
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .gift-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(126, 67, 158, 0.12);
+      border-color: #D4B04C;
+    }
+
+    .filter-btn {
+      background: #FFFFFF;
+      border: 1px solid #E5D0F5;
+      color: #7E439E;
+      transition: all 0.25s ease;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: linear-gradient(135deg, #AA74C9 0%, #4DBFB3 100%);
+      color: #FFFFFF;
+      border-color: #D4B04C;
+      box-shadow: 0 4px 14px rgba(77, 191, 179, 0.25);
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-lavanda-200 selection:text-lavanda-900">
+
+  <header class="hero-header text-lavanda-900 pt-12 pb-16 px-4 relative overflow-hidden border-b border-dourado-200/60">
+    <div class="absolute inset-0 opacity-25 pointer-events-none bg-[radial-gradient(#D4B04C_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="font-script text-6xl sm:text-7xl text-dourado-700 block mb-1 drop-shadow-sm">Ester</span>
+      <h1 class="font-cinzel text-2xl sm:text-4xl font-black uppercase tracking-widest text-lavanda-900 drop-shadow-sm">
+        Lista de Presentes • 15 Anos
+      </h1>
+      <div class="w-28 h-0.5 bg-gradient-to-r from-tiffany-300 via-dourado-500 to-lavanda-300 mx-auto my-5"></div>
+      
+      <p class="text-xs sm:text-sm font-medium text-gray-700 max-w-2xl mx-auto leading-relaxed bg-white/80 p-6 rounded-2xl border border-dourado-200/80 backdrop-blur-md shadow-sm">
+        A presença de cada um de vocês já é o meu maior presente. Mas, para quem desejar me presentear, preparei esta lista com algumas ideias que vão me deixar muito feliz!<br><br>
+        <strong class="font-semibold text-dourado-700">Muito obrigada por fazer parte desse momento tão especial.</strong>
+      </p>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 -mt-8 relative z-20 flex-grow w-full pb-16">
+    <!-- Controls Section -->
+    <div class="glass-card rounded-3xl p-4 sm:p-6 mb-8 border border-dourado-200 shadow-sm">
+      <div class="flex flex-col md:flex-row gap-4 mb-6 items-center">
+        <!-- Search Box -->
+        <div class="relative w-full md:w-1/2">
+          <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-lavanda-500"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Pesquisar presente ou marca..." 
+            class="w-full pl-12 pr-4 py-3 rounded-full border border-lavanda-200 focus:border-dourado-500 focus:ring-2 focus:ring-dourado-200 outline-none text-sm transition bg-white text-gray-800 placeholder-gray-400"
+          >
+        </div>
+
+        <!-- Sort Select -->
+        <div class="relative w-full md:w-1/4">
+          <i data-lucide="arrow-up-down" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-tiffany-700"></i>
+          <select id="sortSelect" class="w-full pl-11 pr-8 py-3 rounded-full border border-lavanda-200 focus:border-dourado-500 outline-none text-sm appearance-none bg-white text-gray-700 cursor-pointer">
+            <option value="default">Ordem Padrão</option>
+            <option value="price-asc">Preço: Menor para Maior</option>
+            <option value="price-desc">Preço: Maior para Menor</option>
+          </select>
+          <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"></i>
+        </div>
+
+        <!-- Favorites Filter -->
+        <button id="favoriteToggleBtn" class="w-full md:w-1/4 py-3 px-5 rounded-full border border-lavanda-200 hover:border-dourado-400 text-sm font-semibold flex items-center justify-center gap-2 bg-white text-lavanda-700 transition shadow-sm">
+          <i data-lucide="heart" class="w-4 h-4 text-pink-500"></i>
+          <span>Apenas Favoritos</span>
+        </button>
+      </div>
+
+      <!-- Categories Filter -->
+      <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar scroll-smooth" id="categoryFilters">
+        <!-- Generated via JS -->
+      </div>
+    </div>
+
+    <!-- Gifts Grid -->
+    <div id="giftGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <!-- Generated via JS -->
+    </div>
+  </main>
+
+  <!-- PURCHASE MARK MODAL -->
+  <div id="purchaseModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 border border-dourado-300 shadow-2xl transform scale-95 transition-transform duration-300" id="purchaseModalBox">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-cinzel font-bold text-lg text-lavanda-900">Confirmar Presente</h3>
+        <button onclick="closePurchaseModal()" class="text-gray-400 hover:text-gray-600 p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      
+      <p class="text-xs sm:text-sm text-gray-600 mb-4" id="modalItemTitle">
+        Você gostaria de marcar este item como presenteado?
+      </p>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold uppercase text-lavanda-700 mb-1">Seu Nome (opcional)</label>
+          <input type="text" id="purchaserNameInput" placeholder="Ex: Titia Maria" class="w-full px-4 py-2.5 rounded-xl border border-lavanda-200 focus:border-dourado-500 outline-none text-sm">
+        </div>
+
+        <div class="flex gap-3 pt-2">
+          <button onclick="closePurchaseModal()" class="flex-1 py-2.5 rounded-xl border border-gray-200 text-gray-600 font-medium text-sm hover:bg-gray-50 transition">
+            Cancelar
+          </button>
+          <button onclick="confirmPurchase()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-tiffany-500 to-lavanda-500 text-white font-semibold text-sm shadow-md hover:opacity-95 transition">
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-lavanda-900 text-white px-5 py-3 rounded-2xl shadow-xl z-50 flex items-center gap-3 transition-all duration-300 transform translate-y-10 opacity-0 pointer-events-none border border-dourado-300/40">
+    <i data-lucide="check-circle" class="w-5 h-5 text-tiffany-300"></i>
+    <span id="toastMsg" class="text-xs sm:text-sm font-medium">Ação realizada!</span>
+  </div>
+
+  <footer class="bg-gradient-to-r from-lavanda-100 via-tiffany-100 to-dourado-100 text-lavanda-900 py-8 px-4 text-center border-t border-dourado-200/60">
+    <div class="max-w-4xl mx-auto space-y-1.5">
+      <p class="font-script text-4xl text-dourado-700">Ester • 15 Anos</p>
+      <p class="font-cinzel text-[11px] font-bold tracking-widest uppercase text-lavanda-700">
+        Muito obrigada pelo carinho e presença!
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Safe initialization of local data
+    const savedFavorites = JSON.parse(localStorage.getItem('ester_favorites') || '[]');
+    const savedPurchased = JSON.parse(localStorage.getItem('ester_purchased') || '[]');
+    const savedPurchasedNames = JSON.parse(localStorage.getItem('ester_purchased_names') || '{}');
+
+    // Category list
+    const categories = [
+      { id: 'all', name: 'Todos' },
+      { id: 'beleza', name: 'Beleza & Skincare' },
+      { id: 'perfumes', name: 'Perfumes' },
+      { id: 'cabelo', name: 'Cabelo' },
+      { id: 'moda', name: 'Moda & Calçados' },
+      { id: 'bolsas', name: 'Bolsas Luxo' },
+      { id: 'joias', name: 'Joias' },
+      { id: 'tecnologia', name: 'Tecnologia' },
+      { id: 'quarto', name: 'Quarto & Decoração' },
+      { id: 'livros', name: 'Livros' },
+      { id: 'papelaria', name: 'Papelaria Premium' },
+      { id: 'esportes', name: 'Esportes & Fitness' },
+      { id: 'viagens', name: 'Viagens & Intercâmbio' },
+      { id: 'hobbies', name: 'Hobbies & Pelúcias' },
+      { id: 'experiencias', name: 'Experiências' },
+      { id: 'cartoes', name: 'Cartões-Presente' },
+      { id: 'games', name: 'Games' }
+    ];
+
+    // Gift items dataset
+    const gifts = [
+      { id: 1, title: "Soft Pinch Liquid Blush", brand: "Rare Beauty", category: "beleza", price: 159.00, priceLabel: "R$ 159,00", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80", desc: "Blush líquido de alta pigmentação e longa duração.", link: "https://www.sephora.com.br/busca?q=Soft+Pinch+Liquid+Blush+Rare+Beauty" },
+      { id: 2, title: "Gloss Lip Maximizer", brand: "Dior", category: "beleza", price: 245.00, priceLabel: "R$ 245,00", image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80", desc: "Gloss labial com efeito preenchedor e hidratação.", link: "https://www.sephora.com.br/busca?q=Gloss+Lip+Maximizer+Dior" },
+      { id: 3, title: "Paleta de Sombras Muted", brand: "MAC", category: "beleza", price: 330.00, priceLabel: "R$ 330,00", image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80", desc: "Cores sofisticadas com acabamento aveludado.", link: "https://www.sephora.com.br/busca?q=Paleta+de+Sombras+MAC" },
+      { id: 4, title: "Body Splash Bare Vanilla", brand: "Victoria's Secret", category: "perfumes", price: 139.00, priceLabel: "R$ 139,00", image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80", desc: "Fragrância aconchegante de baunilha doce.", link: "https://www.amazon.com.br/s?k=Body+Splash+Bare+Vanilla+Victorias+Secret" },
+      { id: 5, title: "Perfume Good Girl EDP", brand: "Carolina Herrera", category: "perfumes", price: 499.00, priceLabel: "R$ 499,00", image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80", desc: "Fragrância empoderada com notas de jasmim e cacau.", link: "https://www.sephora.com.br/busca?q=Good+Girl+Carolina+Herrera" },
+      { id: 6, title: "Perfume Miss Dior EDP", brand: "Dior", category: "perfumes", price: 750.00, priceLabel: "R$ 750,00", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80", desc: "Buquê floral luxuoso e envolvente.", link: "https://www.sephora.com.br/busca?q=Miss+Dior+Eau+de+Parfum" },
+      { id: 7, title: "Fronha de Cetim e Scrunchies", brand: "Sephora Collection", category: "cabelo", price: 120.00, priceLabel: "R$ 120,00", image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=600&q=80", desc: "Evita o atrito e preserva a hidratação dos fios.", link: "https://www.amazon.com.br/s?k=Fronha+de+Cetim+e+Scrunchies" },
+      { id: 8, title: "Óleo Capilar Elixir Ultime", brand: "Kérastase", category: "cabelo", price: 230.00, priceLabel: "R$ 230,00", image: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600&q=80", desc: "Nutrição profunda e brilho radiante.", link: "https://www.sephora.com.br/busca?q=Elixir+Ultime+Kerastase" },
+      { id: 9, title: "Pijama em Satin Delicado", brand: "Renner", category: "moda", price: 159.00, priceLabel: "R$ 159,00", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80", desc: "Conforto refinado para noites de descanso.", link: "https://www.lojasrenner.com.br/busca?Ntt=pijama+satin" },
+      { id: 10, title: "Tênis Air Force 1 '07", brand: "Nike", category: "moda", price: 799.00, priceLabel: "R$ 799,00", image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80", desc: "Ícone clássico, confortável e versátil.", link: "https://www.nike.com.br/busca?Ntt=Air+Force+1+07" },
+      { id: 11, title: "Bolsa Shoulder Bag Couro", brand: "Schutz", category: "bolsas", price: 890.00, priceLabel: "R$ 890,00", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80", desc: "Design moderno e acabamento elegante.", link: "https://www.schutz.com.br/busca?q=shoulder+bag+couro" },
+      { id: 12, title: "Bolsa Le Chiquito", brand: "Jacquemus", category: "bolsas", price: 4500.00, priceLabel: "R$ 4.500,00", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80", desc: "Ícone da moda internacional em couro nobre.", link: "https://www.farfetch.com/br/shopping/women/search/items.aspx?q=Jacquemus+Le+Chiquito" },
+      { id: 13, title: "Pulseira Moments Prata", brand: "Pandora", category: "joias", price: 749.00, priceLabel: "R$ 749,00", image: "https://images.unsplash.com/photo-1611591475824-286153be302d?auto=format&fit=crop&w=600&q=80", desc: "Pulseira clássica em prata para adicionar berloques.", link: "https://www.pandora.net/pt-br/search?q=Pulseira+Moments+Prata" },
+      { id: 14, title: "Colar Life Coração Prata", brand: "Vivara", category: "joias", price: 850.00, priceLabel: "R$ 850,00", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80", desc: "Pingente delicado em prata com acabamento refinado.", link: "https://www.vivara.com.br/busca?q=colar+life+coracao+prata" },
+      { id: 15, title: "Câmera Instax Mini 12", brand: "Fujifilm", category: "tecnologia", price: 550.00, priceLabel: "R$ 550,00", image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80", desc: "Fotos instantâneas estilo vintage.", link: "https://www.amazon.com.br/s?k=Instax+Mini+12" },
+      { id: 16, title: "AirPods (3ª Geração)", brand: "Apple", category: "tecnologia", price: 1899.00, priceLabel: "R$ 1.899,00", image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80", desc: "Áudio Espacial com rastreamento dinâmico da cabeça.", link: "https://www.amazon.com.br/s?k=AirPods+3a+Geracao" },
+      { id: 17, title: "iPad Air (M2)", brand: "Apple", category: "tecnologia", price: 6799.00, priceLabel: "R$ 6.799,00", image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80", desc: "Desempenho incrível para estudos, leitura e artes.", link: "https://www.amazon.com.br/s?k=iPad+Air+M2" },
+      { id: 18, title: "Luminária de Cristal Touch", brand: "Amazon Decor", category: "quarto", price: 180.00, priceLabel: "R$ 180,00", image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80", desc: "Toque moderno e iluminação aconchegante.", link: "https://www.amazon.com.br/s?k=Luminaria+de+Mesa+de+Cristal+Touch" },
+      { id: 19, title: "Espelho Camarim com LED", brand: "Tok&Stok", category: "quarto", price: 650.00, priceLabel: "R$ 650,00", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80", desc: "Iluminação perfeita para maquiagem e fotos.", link: "https://www.tokstok.com.br/busca?q=Espelho+Camarim+LED" },
+      { id: 20, title: "Devocional Café com Deus Pai", brand: "Editora Vida", category: "livros", price: 89.00, priceLabel: "R$ 89,00", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80", desc: "Inspiração diária e reflexão espiritual.", link: "https://www.amazon.com.br/s?k=Devocional+Cafe+com+Deus+Pai+2026" },
+      { id: 21, title: "Kindle Paperwhite", brand: "Amazon", category: "livros", price: 799.00, priceLabel: "R$ 799,00", image: "https://images.unsplash.com/photo-1592496431122-2349e0fbc666?auto=format&fit=crop&w=600&q=80", desc: "Tela de 6,8” com luz ajustável para leitura.", link: "https://www.amazon.com.br/s?k=Kindle+Paperwhite" },
+      { id: 22, title: "Kit Stabilo Boss Pastel 15", brand: "Stabilo", category: "papelaria", price: 160.00, priceLabel: "R$ 160,00", image: "https://images.unsplash.com/photo-1585336261026-8f5786372969?auto=format&fit=crop&w=600&q=80", desc: "Marca-textos em tons pastel sofisticados.", link: "https://www.amazon.com.br/s?k=Kit+Canetas+Stabilo+Boss+Pastel+15+Cores" },
+      { id: 23, title: "Mochila Seoul Grande", brand: "Kipling", category: "papelaria", price: 990.00, priceLabel: "R$ 990,00", image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80", desc: "Espaçosa, resistente e perfeita para estudos.", link: "https://www.kipling.com.br/busca?q=Mochila+Seoul+Grande" },
+      { id: 24, title: "Garrafa FreeSip 710ml", brand: "Owala", category: "esportes", price: 260.00, priceLabel: "R$ 260,00", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80", desc: "Garrafa térmica que conserva bebidas geladas.", link: "https://www.amazon.com.br/s?k=Owala+FreeSip+710ml" },
+      { id: 25, title: "Copo Térmico Quencher 1.18L", brand: "Stanley", category: "esportes", price: 315.00, priceLabel: "R$ 315,00", image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80", desc: "Ergonômico e térmico para treinos e rotina.", link: "https://www.stanley1913.com.br/busca?ft=Copo+Termico+Quencher" },
+      { id: 26, title: "Mat de Yoga & Pilates", brand: "Track & Field", category: "esportes", price: 340.00, priceLabel: "R$ 340,00", image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=600&q=80", desc: "Tapete antiderrapante com excelente amortecimento.", link: "https://www.tf.com.br/busca?q=Mat+de+Yoga" },
+      { id: 27, title: "Kit Organizadores de Mala", brand: "Samsonite", category: "viagens", price: 190.00, priceLabel: "R$ 190,00", image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&w=600&q=80", desc: "Organizadores para bagagem de bordo.", link: "https://www.amazon.com.br/s?k=Kit+Organizadores+de+Mala+Samsonite" },
+      { id: 28, title: "Mala de Bordo Rígida", brand: "Swisswin", category: "viagens", price: 850.00, priceLabel: "R$ 850,00", image: "https://images.unsplash.com/photo-1581553680321-4fffae59febd?auto=format&fit=crop&w=600&q=80", desc: "Rodinhas 360° e cadeado TSA para viagens.", link: "https://www.amazon.com.br/s?k=Mala+de+Bordo+Rigida+Swisswin" },
+      { id: 29, title: "Squishmallow Gigante 40cm", brand: "Sunny", category: "hobbies", price: 299.00, priceLabel: "R$ 299,00", image: "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=600&q=80", desc: "Pelúcia macia e ultra fofa colecionável.", link: "https://www.amazon.com.br/s?k=Squishmallow+40cm" },
+      { id: 30, title: "LEGO Flor de Cerejeira", brand: "LEGO", category: "hobbies", price: 499.00, priceLabel: "R$ 499,00", image: "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?auto=format&fit=crop&w=600&q=80", desc: "Set Botânico lindo para decorar o quarto.", link: "https://www.lego.com/pt-br/search?q=Flor+de+Cerejeira" },
+      { id: 31, title: "Dia de Spa Relaxante", brand: "L'Occitane", category: "experiencias", price: 450.00, priceLabel: "R$ 450,00", image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80", desc: "Massagem e renovação de energias em spa.", link: "https://br.loccitane.com/search?q=spa" },
+      { id: 32, title: "Gift Card Digital R$ 200", brand: "Sephora", category: "cartoes", price: 200.00, priceLabel: "R$ 200,00", image: "https://images.unsplash.com/photo-1556742049-0a670f4a4591?auto=format&fit=crop&w=600&q=80", desc: "Cartão-presente para escolha de itens na loja.", link: "https://www.sephora.com.br/cartao-presente/" },
+      { id: 33, title: "Headset Gamer Pink", brand: "Razer", category: "games", price: 450.00, priceLabel: "R$ 450,00", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=600&q=80", desc: "Áudio imersivo com design rosa delicado.", link: "https://www.amazon.com.br/s?k=Headset+Gamer+Pink" },
+      { id: 34, title: "Nintendo Switch OLED White", brand: "Nintendo", category: "games", price: 2300.00, priceLabel: "R$ 2.300,00", image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?auto=format&fit=crop&w=600&q=80", desc: "Console portátil com tela OLED vibrante.", link: "https://www.amazon.com.br/s?k=Nintendo+Switch+OLED+White" }
+    ];
+
+    // Reactive State
+    let activeCategory = 'all';
+    let onlyFavorites = false;
+    let selectedItemForPurchase = null;
+
+    // DOM Elements
+    const categoryFiltersContainer = document.getElementById('categoryFilters');
+    const giftGrid = document.getElementById('giftGrid');
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    const favoriteToggleBtn = document.getElementById('favoriteToggleBtn');
+
+    // Render Category Buttons
+    function renderCategories() {
+      categoryFiltersContainer.innerHTML = categories.map(cat => `
+        <button 
+          onclick="setCategory('${cat.id}')"
+          class="filter-btn px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap shadow-sm ${activeCategory === cat.id ? 'active' : ''}"
+        >
+          ${cat.name}
+        </button>
+      `).join('');
+    }
+
+    function setCategory(catId) {
+      activeCategory = catId;
+      renderCategories();
+      renderGifts();
+    }
+
+    // Toggle Favorite
+    function toggleFavorite(id, event) {
+      if (event) event.stopPropagation();
+      const index = savedFavorites.indexOf(id);
+      if (index === -1) {
+        savedFavorites.push(id);
+        showToast('Item adicionado aos favoritos!');
+      } else {
+        savedFavorites.splice(index, 1);
+        showToast('Item removido dos favoritos.');
+      }
+      localStorage.setItem('ester_favorites', JSON.stringify(savedFavorites));
+      renderGifts();
+    }
+
+    // Open Purchase Modal
+    function openPurchaseModal(id) {
+      selectedItemForPurchase = gifts.find(g => g.id === id);
+      if (!selectedItemForPurchase) return;
+
+      document.getElementById('modalItemTitle').innerText = `Você gostaria de marcar "${selectedItemForPurchase.title}" como comprado?`;
+      document.getElementById('purchaserNameInput').value = savedPurchasedNames[id] || '';
+      
+      const modal = document.getElementById('purchaseModal');
+      const modalBox = document.getElementById('purchaseModalBox');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modalBox.classList.remove('scale-95');
+      modalBox.classList.add('scale-100');
+    }
+
+    // Close Purchase Modal
+    function closePurchaseModal() {
+      const modal = document.getElementById('purchaseModal');
+      const modalBox = document.getElementById('purchaseModalBox');
+      modalBox.classList.remove('scale-100');
+      modalBox.classList.add('scale-95');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      selectedItemForPurchase = null;
+    }
+
+    // Confirm Purchase Action
+    function confirmPurchase() {
+      if (!selectedItemForPurchase) return;
+      const id = selectedItemForPurchase.id;
+      const name = document.getElementById('purchaserNameInput').value.trim();
+
+      const index = savedPurchased.indexOf(id);
+      if (index === -1) {
+        savedPurchased.push(id);
+        if (name) savedPurchasedNames[id] = name;
+        showToast('Presente marcado como comprado!');
+      } else {
+        savedPurchased.splice(index, 1);
+        delete savedPurchasedNames[id];
+        showToast('Marcação de compra removida.');
+      }
+
+      localStorage.setItem('ester_purchased', JSON.stringify(savedPurchased));
+      localStorage.setItem('ester_purchased_names', JSON.stringify(savedPurchasedNames));
+      closePurchaseModal();
+      renderGifts();
+    }
+
+    // Toast Notification Handler
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+      
+      setTimeout(() => {
+        toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    // Main Gift Render Engine
+    function renderGifts() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const sortOrder = sortSelect.value;
+
+      let filtered = gifts.filter(gift => {
+        const matchesCat = activeCategory === 'all' || gift.category === activeCategory;
+        const matchesSearch = gift.title.toLowerCase().includes(searchTerm) || gift.brand.toLowerCase().includes(searchTerm);
+        const matchesFav = !onlyFavorites || savedFavorites.includes(gift.id);
+        return matchesCat && matchesSearch && matchesFav;
+      });
+
+      if (sortOrder === 'price-asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortOrder === 'price-desc') {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      if (filtered.length === 0) {
+        giftGrid.innerHTML = `
+          <div class="col-span-full text-center py-16 bg-white/60 rounded-3xl border border-lavanda-200">
+            <i data-lucide="gift" class="w-12 h-12 text-lavanda-300 mx-auto mb-3"></i>
+            <p class="font-cinzel text-base text-lavanda-800 font-semibold">Nenhum presente encontrado.</p>
+            <p class="text-xs text-gray-500 mt-1">Tente ajustar seus filtros ou termos de pesquisa.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      giftGrid.innerHTML = filtered.map(gift => {
+        const isFav = savedFavorites.includes(gift.id);
+        const isBought = savedPurchased.includes(gift.id);
+        const purchaserName = savedPurchasedNames[gift.id];
+
+        return `
+          <div class="gift-card bg-white rounded-3xl overflow-hidden border border-dourado-200/70 flex flex-col justify-between ${isBought ? 'opacity-70 grayscale-[30%]' : ''}">
+            <div>
+              <div class="relative h-52 overflow-hidden bg-lavanda-50">
+                <img 
+                  src="${gift.image}" 
+                  alt="${gift.title}" 
+                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/F3E8FA/7E439E?text=${encodeURIComponent(gift.title)}';"
+                >
+                <button 
+                  onclick="toggleFavorite(${gift.id}, event)"
+                  class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-gray-400 hover:text-pink-500 shadow-md transition"
+                >
+                  <i data-lucide="heart" class="w-5 h-5 ${isFav ? 'text-pink-500 fill-pink-500' : ''}"></i>
+                </button>
+
+                ${isBought ? `
+                  <div class="absolute bottom-3 left-3 bg-tiffany-700 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                    ${purchaserName ? `Comprado por ${purchaserName}` : 'Já Comprado'}
+                  </div>
+                ` : ''}
+              </div>
+
+              <div class="p-5">
+                <span class="text-[11px] font-bold tracking-wider uppercase text-tiffany-700 block mb-1">${gift.brand}</span>
+                <h3 class="font-cinzel font-bold text-base text-lavanda-900 leading-snug mb-2">${gift.title}</h3>
+                <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed mb-4">${gift.desc}</p>
+              </div>
+            </div>
+
+            <div class="p-5 pt-0 border-t border-gray-50 flex flex-col gap-3">
+              <span class="text-lg font-bold text-dourado-700">${gift.priceLabel}</span>
+
+              <div class="grid grid-cols-2 gap-2">
+                <a 
+                  href="${gift.link}" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="py-2.5 px-3 rounded-xl bg-gradient-to-r from-dourado-500 to-dourado-700 text-white text-xs font-semibold text-center shadow-sm hover:opacity-90 transition flex items-center justify-center gap-1.5"
+                >
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  <span>Ver Loja</span>
+                </a>
+
+                <button 
+                  onclick="openPurchaseModal(${gift.id})"
+                  class="py-2.5 px-3 rounded-xl border border-lavanda-300 text-lavanda-700 hover:bg-lavanda-50 text-xs font-medium text-center transition flex items-center justify-center gap-1.5"
+                >
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 ${isBought ? 'text-tiffany-700' : ''}"></i>
+                  <span>${isBought ? 'Alterar' : 'Marcar'}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', renderGifts);
+    sortSelect.addEventListener('change', renderGifts);
+    
+    favoriteToggleBtn.addEventListener('click', () => {
+      onlyFavorites = !onlyFavorites;
+      favoriteToggleBtn.classList.toggle('border-dourado-500', onlyFavorites);
+      favoriteToggleBtn.classList.toggle('bg-lavanda-50', onlyFavorites);
+      renderGifts();
+    });
+
+    // Initial Execution
+    window.onload = function() {
+      renderCategories();
+      renderGifts();
+      lucide.createIcons();
+    };
+  </script>
+</body>
+</html>
